@@ -1,0 +1,39 @@
+{
+  "kind": "collectionType",
+  "collectionName": "passengers",
+  "info": {
+    "singularName": "passenger",
+    "pluralName": "passengers",
+    "displayName": "passenger",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "biginteger",
+      "required": true
+    },
+    "LineID": {
+      "type": "uid",
+      "targetField": "name",
+      "required": true
+    },
+    "address": {
+      "type": "text",
+      "required": true
+    },
+    "history_orders": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::history-order.history-order",
+      "mappedBy": "passenger_id"
+    }
+  }
+}

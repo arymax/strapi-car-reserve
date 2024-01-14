@@ -1,0 +1,34 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history_receives",
+  "info": {
+    "singularName": "history-receive",
+    "pluralName": "history-receives",
+    "displayName": "history_receive",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "recieve_datetime": {
+      "type": "datetime"
+    },
+    "recieve_state": {
+      "type": "string"
+    },
+    "driver_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::driver.driver",
+      "inversedBy": "history_receives_id"
+    },
+    "history_orders_id": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::history-order.history-order",
+      "mappedBy": "history_receives_id"
+    }
+  }
+}

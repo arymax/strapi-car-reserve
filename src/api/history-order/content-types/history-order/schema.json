@@ -1,0 +1,52 @@
+{
+  "kind": "collectionType",
+  "collectionName": "history_orders",
+  "info": {
+    "singularName": "history-order",
+    "pluralName": "history-orders",
+    "displayName": "history_order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "departure": {
+      "type": "string"
+    },
+    "destination": {
+      "type": "string"
+    },
+    "order_state": {
+      "type": "string"
+    },
+    "price": {
+      "type": "biginteger"
+    },
+    "order_start_time": {
+      "type": "datetime"
+    },
+    "order_complete_time": {
+      "type": "datetime"
+    },
+    "passenger_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::passenger.passenger",
+      "inversedBy": "history_orders"
+    },
+    "history_receives_id": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::history-receive.history-receive",
+      "inversedBy": "history_orders_id"
+    },
+    "driver_id": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::driver.driver",
+      "inversedBy": "history_orders_id"
+    }
+  }
+}

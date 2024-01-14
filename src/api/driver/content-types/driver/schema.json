@@ -1,0 +1,43 @@
+{
+  "kind": "collectionType",
+  "collectionName": "drivers",
+  "info": {
+    "singularName": "driver",
+    "pluralName": "drivers",
+    "displayName": "driver",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "phone": {
+      "type": "biginteger"
+    },
+    "carnum": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "worktime": {
+      "type": "datetime",
+      "required": true
+    },
+    "history_orders_id": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::history-order.history-order",
+      "mappedBy": "driver_id"
+    },
+    "history_receives_id": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::history-receive.history-receive",
+      "mappedBy": "driver_id"
+    }
+  }
+}
