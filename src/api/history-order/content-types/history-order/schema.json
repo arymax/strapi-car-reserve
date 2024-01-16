@@ -36,17 +36,17 @@
       "target": "api::passenger.passenger",
       "inversedBy": "history_orders"
     },
-    "history_receives_id": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::history-receive.history-receive",
-      "inversedBy": "history_orders_id"
-    },
     "driver_id": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::driver.driver",
       "inversedBy": "history_orders_id"
+    },
+    "order_list": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::order-list.order-list",
+      "mappedBy": "history_order_id"
     }
   }
 }

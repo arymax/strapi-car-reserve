@@ -835,15 +835,15 @@ export interface ApiHistoryOrderHistoryOrder extends Schema.CollectionType {
       'manyToOne',
       'api::passenger.passenger'
     >;
-    history_receives_id: Attribute.Relation<
-      'api::history-order.history-order',
-      'manyToMany',
-      'api::history-receive.history-receive'
-    >;
     driver_id: Attribute.Relation<
       'api::history-order.history-order',
       'manyToOne',
       'api::driver.driver'
+    >;
+    order_list: Attribute.Relation<
+      'api::history-order.history-order',
+      'oneToOne',
+      'api::order-list.order-list'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -882,10 +882,10 @@ export interface ApiHistoryReceiveHistoryReceive extends Schema.CollectionType {
       'manyToOne',
       'api::driver.driver'
     >;
-    history_orders_id: Attribute.Relation<
+    order_list: Attribute.Relation<
       'api::history-receive.history-receive',
-      'manyToMany',
-      'api::history-order.history-order'
+      'oneToOne',
+      'api::order-list.order-list'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -898,6 +898,45 @@ export interface ApiHistoryReceiveHistoryReceive extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::history-receive.history-receive',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiOrderListOrderList extends Schema.CollectionType {
+  collectionName: 'order_lists';
+  info: {
+    singularName: 'order-list';
+    pluralName: 'order-lists';
+    displayName: 'order_list';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    history_order_id: Attribute.Relation<
+      'api::order-list.order-list',
+      'oneToOne',
+      'api::history-order.history-order'
+    >;
+    history_receives_id: Attribute.Relation<
+      'api::order-list.order-list',
+      'oneToOne',
+      'api::history-receive.history-receive'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::order-list.order-list',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::order-list.order-list',
       'oneToOne',
       'admin::user'
     > &
@@ -966,6 +1005,7 @@ declare module '@strapi/types' {
       'api::driver.driver': ApiDriverDriver;
       'api::history-order.history-order': ApiHistoryOrderHistoryOrder;
       'api::history-receive.history-receive': ApiHistoryReceiveHistoryReceive;
+      'api::order-list.order-list': ApiOrderListOrderList;
       'api::passenger.passenger': ApiPassengerPassenger;
     }
   }

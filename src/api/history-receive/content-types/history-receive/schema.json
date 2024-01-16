@@ -24,10 +24,10 @@
       "target": "api::driver.driver",
       "inversedBy": "history_receives_id"
     },
-    "history_orders_id": {
+    "order_list": {
       "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::history-order.history-order",
+      "relation": "oneToOne",
+      "target": "api::order-list.order-list",
       "mappedBy": "history_receives_id"
     }
   }

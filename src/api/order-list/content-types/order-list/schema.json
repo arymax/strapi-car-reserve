@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order_lists",
+  "info": {
+    "singularName": "order-list",
+    "pluralName": "order-lists",
+    "displayName": "order_list"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "history_order_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::history-order.history-order",
+      "inversedBy": "order_list"
+    },
+    "history_receives_id": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::history-receive.history-receive",
+      "inversedBy": "order_list"
+    }
+  }
+}
